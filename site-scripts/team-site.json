@@ -1,0 +1,10 @@
+{
+    "$schema": "schema.json",
+    "title": "SmartterHealth Default",
+    "actions": [
+        {
+            "verb": "applyTheme",
+            "themeName": "SmartterHealth Default"
+         }
+    ]
+}
