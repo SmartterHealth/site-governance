@@ -22,7 +22,7 @@ foreach ( $theme in $install.themes ) {
     $remoteTheme = Get-SPOTheme -Name $themeName
 
     # ConvertFrom-Json returns a PSObject, which is not compatible with the Add-SPOTheme cmdlet. No biggie, we'll just convert it to a Dictionary.
-    $palette = PSObjectToDictionary -psobject ( Get-Content -Path $theme.palette | ConvertFrom-Json )
+    $palette = PSObjectToDictionary -psobject $theme.palette
     
     if( ($null -eq $remoteTheme ) -or ( $null -ne $remoteTheme -and $Overwrite -eq $true ) ) {
         Add-SPOTheme -Name $theme.name -Palette $palette -IsInverted $theme.isInverted
