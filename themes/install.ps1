@@ -20,6 +20,8 @@ $install = Get-Content -Path $PathToInstallFile -Raw | ConvertFrom-Json
 foreach ( $theme in $install.themes ) {
     $themeName = $theme.name
     $remoteTheme = Get-SPOTheme -Name $themeName
+
+    # ConvertFrom-Json returns a PSObject, which is not compatible with the Add-SPOTheme cmdlet. No biggie, we'll just convert it to a Dictionary.
     $palette = PSObjectToDictionary -psobject ( Get-Content -Path $theme.palette | ConvertFrom-Json )
     
     if( ($null -eq $remoteTheme ) -or ( $null -ne $remoteTheme -and $Overwrite -eq $true ) ) {
@@ -30,3 +32,5 @@ foreach ( $theme in $install.themes ) {
     }
 }
 
+write-host "Here is a list of all of your SharePoint Online Themes:"
+Get-SPOTheme
