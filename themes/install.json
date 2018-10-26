@@ -1,0 +1,14 @@
+{
+    "themes": [
+        {
+            "name": "SmartterHealth Dark",
+            "isInverted": false,
+            "palette": "sh-dark-palette.json"
+        },
+        {
+            "name": "SmartterHealth Default",
+            "isInverted": false,
+            "palette": "sh-default-palette.json"
+        }
+    ]
+}

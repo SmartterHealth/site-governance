@@ -1,6 +1,6 @@
 {
-    "$schema": "https://developer.microsoft.com/json-schemas/sp/site-design-script-actions.schema.json",
-    "title": "SmartterHealth Default Site Script",
+    "$schema": "schema.json",
+    "title": "SmartterHealth Core Site Script",
     "actions": [
         {
             "verb": "applyTheme",
