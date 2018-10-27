@@ -1,0 +1,13 @@
+{
+    "siteDesigns": [
+        {
+            "title": "SmartterHealth Team Site Design",
+            "webTemplate": "64", 
+            "siteScripts": [
+                "910df8ab-e488-48c6-90b8-8066bfd933f4"
+            ],
+            "description": "",
+            "isDefault": true
+        }
+    ]
+}

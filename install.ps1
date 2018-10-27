@@ -5,7 +5,7 @@ Set-Location -Path ../site-scripts
 ./install.ps1
 
 Set-Location -Path ../site-designs
-pwd
+./install.ps1
 
-cd ../
-pwd
+Set-Location -Path ../
+write-host "Done!"

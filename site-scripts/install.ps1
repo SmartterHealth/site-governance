@@ -12,11 +12,11 @@ foreach ( $siteScript in $install.siteScripts ) {
     $remoteScript = Get-SPOSiteScript | Where-Object { $_.Title -eq $title }
 
     if ( $remoteScript -eq $null ) {
-        Add-SPOSiteScript -Title $title -Content $scriptJson
+        $result = Add-SPOSiteScript -Title $title -Content $scriptJson
         write-host "Site Script '$title' added."
     } else {
         if ( $Overwrite -eq $true ) {
-            Set-SPOSiteScript -Identity $remoteScript.id -Title $title -Content $scriptJson
+            $result = Set-SPOSiteScript -Identity $remoteScript.id -Title $title -Content $scriptJson
             write-host "Site Script '$title' updated."
         } else {
             write-host "Site Script '$title' already exists, but the overwrite parameter has been set to false. No action taken."
