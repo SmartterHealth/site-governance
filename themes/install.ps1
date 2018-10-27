@@ -26,11 +26,8 @@ foreach ( $theme in $install.themes ) {
     
     if( ($null -eq $remoteTheme ) -or ( $null -ne $remoteTheme -and $Overwrite -eq $true ) ) {
         Add-SPOTheme -Name $theme.name -Palette $palette -IsInverted $theme.isInverted
-        Write-Host "Theme $themeName has been updated."
+        Write-Host "Theme '$themeName' has been updated."
     } else {
-        write-host "Theme $themeName already exists, but the overwrite parameter has been set to false. No action taken."
+        write-host "Theme '$themeName' already exists, but the overwrite parameter has been set to false. No action taken."
     }
 }
-
-write-host "Here is a list of all of your SharePoint Online Themes:"
-Get-SPOTheme

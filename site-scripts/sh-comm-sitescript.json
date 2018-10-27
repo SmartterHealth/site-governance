@@ -1,9 +1,8 @@
 {
     "$schema": "schema.json",
-    "title": "SmartterHealth Comm Site Script",
     "actions": [
         {
-            "verb": "setSiteLog",
+            "verb": "setSiteLogo",
             "url": "https://i.imgur.com/fzAWVu1.png"
         }
     ]

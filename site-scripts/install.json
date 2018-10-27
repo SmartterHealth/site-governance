@@ -1,0 +1,12 @@
+{
+    "siteScripts": [
+        {
+            "title": "SmartterHealth Comm Site Script",
+            "path": "sh-comm-sitescript.json"
+        },
+        {
+            "title": "SmartterHealth Core Site Script",
+            "path": "sh-core-sitescript.json"
+        }
+    ]
+}
