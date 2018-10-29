@@ -23,6 +23,7 @@ $install = Get-Content -Path $PathToInstallFile -Raw | ConvertFrom-Json
 
 foreach ( $siteDesign in $install.siteDesigns ) {
     $title = $siteDesign.title
+    $isDefault = $siteDesign.isDefault
 
     # See if the siteDesign existed remotely
     $remoteSiteDesign = Get-SPOSiteDesign | Where-Object { $_.Title -eq $title }
@@ -30,13 +31,17 @@ foreach ( $siteDesign in $install.siteDesigns ) {
     # Convert Site Script Titles to their IDs by looking them up
     $siteScriptIDs = Get-SPOSiteScriptIDs($siteDesign.siteScripts)
 
-     # Make sure the user wants to overwrite the theme if it already existed.
-     if ( $remoteSiteDesign -eq $null ) {
-        Add-SPOSiteDesign -Title $title -Description $siteDesign.description -WebTemplate $siteDesign.webTemplate -SiteScripts $siteScriptIDs -IsDefault $siteDesign.isDefault
+    # Make sure the user wants to overwrite the theme if it already existed.
+     if ( $null -eq $remoteSiteDesign ) {
+        if ( $isDefault -eq $true ) {
+            Add-SPOSiteDesign -Title $title -Description $siteDesign.description -WebTemplate $siteDesign.webTemplate -SiteScripts $siteScriptIDs -IsDefault
+        } else {
+            Add-SPOSiteDesign -Title $title -Description $siteDesign.description -WebTemplate $siteDesign.webTemplate -SiteScripts $siteScriptIDs
+        }
         write-host "Site Design '$title' added."
     } else {
         if ( $Overwrite -eq $true ) {
-            Set-SPOSiteDesign -Identity $remoteSiteDesign.Id -Title $title -Description $siteDesign.description -WebTemplate $siteDesign.webTemplate -SiteScripts $siteScriptIDs -IsDefault $siteDesign.isDefault
+            Set-SPOSiteDesign -Identity $remoteSiteDesign.Id -Title $title -Description $siteDesign.description -WebTemplate $siteDesign.webTemplate -SiteScripts $siteScriptIDs -IsDefault $isDefault
             write-host "Site Design '$title' updated."
         } else {
             write-host "Site Design '$title' already exists, but the overwrite parameter has been set to false. No action taken."

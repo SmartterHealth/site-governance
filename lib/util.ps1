@@ -1,21 +1,26 @@
 function Check-SPOConnection {
-    try
-    {
-        Get-MsolDomain -ErrorAction Stop > $null
+
+    Get-SPOSiteScript -ErrorAction SilentlyContinue 
+    
+    if ($?) {
+        write-host "connected"
+        return $true
     }
-    catch 
-    {
+    else {
         write-host "You are not connected to SharePoint Online. Would you like to connect now? (y/n)"
         $result = Read-Host
-
+        
         if ( $result -eq "y" ) {
             Connect-SPOService
-
+        
             return $true
-        } else {
+        }
+        else {
             return $false
         }
+
     }
+    
 }
 
 function PSObjectToDictionary {
