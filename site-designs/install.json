@@ -8,6 +8,16 @@
             ],
             "description": "",
             "isDefault": true
+        },
+        {
+            "title": "SmartterHealth Communication Site Design",
+            "webTemplate": "68", 
+            "siteScripts": [
+                "SmartterHealth Core Site Script",
+                "SmartterHealth Comm Site Script"
+            ],
+            "description": "",
+            "isDefault": true
         }
     ]
 }
