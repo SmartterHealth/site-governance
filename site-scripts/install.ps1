@@ -3,14 +3,21 @@ Param(
     [bool] $Overwrite = $true
 )
 
+# Include utility functions
+. ../lib/util.ps1
+
+# Read in our installation settings from the .json file.
 $install = Get-Content -Path $PathToInstallFile -Raw | ConvertFrom-Json
 
+# For each siteScript in the .json file, install it.
 foreach ( $siteScript in $install.siteScripts ) {
     $title = $siteScript.title
     $scriptJson = Get-Content -Path $siteScript.path -Raw
 
+    # See if the script existed remotely
     $remoteScript = Get-SPOSiteScript | Where-Object { $_.Title -eq $title }
 
+    # Make sure the user wants to overwrite the theme if it already existed.
     if ( $remoteScript -eq $null ) {
         $result = Add-SPOSiteScript -Title $title -Content $scriptJson
         write-host "Site Script '$title' added."

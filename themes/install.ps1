@@ -3,20 +3,13 @@ Param(
     [bool] $Overwrite = $true
 )
 
-function PSObjectToDictionary {
-    Param( $psobject )
+# Include utility functions
+. ../lib/util.ps1
 
-    $dict = @{}
-
-    $psobject.psobject.properties | ForEach-object {
-        $dict.Add($_.Name, $_.Value)
-    }
-
-    return $dict
-}
-
+# Read in our installation settings from the .json file.
 $install = Get-Content -Path $PathToInstallFile -Raw | ConvertFrom-Json
 
+# For each theme in the .json file, install it.
 foreach ( $theme in $install.themes ) {
     $themeName = $theme.name
     $remoteTheme = Get-SPOTheme -Name $themeName
@@ -24,6 +17,7 @@ foreach ( $theme in $install.themes ) {
     # ConvertFrom-Json returns a PSObject, which is not compatible with the Add-SPOTheme cmdlet. No biggie, we'll just convert it to a Dictionary.
     $palette = PSObjectToDictionary -psobject $theme.palette
     
+    # Make sure the user wants to overwrite the theme if it already existed.
     if( ($null -eq $remoteTheme ) -or ( $null -ne $remoteTheme -and $Overwrite -eq $true ) ) {
         Add-SPOTheme -Name $theme.name -Palette $palette -IsInverted $theme.isInverted
         Write-Host "Theme '$themeName' has been updated."

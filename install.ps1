@@ -1,3 +1,12 @@
+. ./lib/util.ps1
+
+$connected = Check-SPOConnection
+
+if ($connected -eq $false ) {
+    write-host "Please connect to SharePoint Online using Connect-SPOService before running this script."
+    exit
+}
+
 Set-Location -Path ./themes 
 ./install.ps1
 
