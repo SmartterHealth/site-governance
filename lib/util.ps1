@@ -3,7 +3,7 @@ function Check-SPOConnection {
     Get-SPOSiteScript -ErrorAction SilentlyContinue 
     
     if ($?) {
-        write-host "connected"
+        write-host "Already connected to SharePoint Online."
         return $true
     }
     else {

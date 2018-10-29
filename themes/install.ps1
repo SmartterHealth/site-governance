@@ -12,7 +12,7 @@ $install = Get-Content -Path $PathToInstallFile -Raw | ConvertFrom-Json
 # For each theme in the .json file, install it.
 foreach ( $theme in $install.themes ) {
     $themeName = $theme.name
-    $remoteTheme = Get-SPOTheme -Name $themeName
+    $remoteTheme = Get-SPOTheme | Where-Object { $_.Name -eq $themeName }
 
     # ConvertFrom-Json returns a PSObject, which is not compatible with the Add-SPOTheme cmdlet. No biggie, we'll just convert it to a Dictionary.
     $palette = PSObjectToDictionary -psobject $theme.palette
