@@ -21,7 +21,7 @@ SharePoint Site Scripts allow you to run "actions" on a site after it has been c
 
 * Blocking External Sharing. 
 
-> **Important:** SharePoint Online [controls for external sharing][spo-sharing] do not give you granular controls for controlling external sharing in SharePoint Online -- It's "all or none" for SharePoint sites. This enables you to make external sharing the exception, not the norm.
+> **Important:** SharePoint Online [controls for external sharing][spo-sharing] do not give you granular controls for controlling external sharing in SharePoint Online -- It's "all or none" for SharePoint sites. This site script capability enables you to make external sharing the exception, not the norm.
 
 * Creating Custom Lists/Libraries.
 * [Calling a Flow][flow-callflow].
